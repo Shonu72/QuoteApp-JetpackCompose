@@ -23,10 +23,8 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-@Preview
 @Composable
 fun QuoteListItem() {
     Card(
@@ -65,3 +63,4 @@ fun QuoteListItem() {
         }
     }
 }
+
