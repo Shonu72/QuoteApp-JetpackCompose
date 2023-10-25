@@ -23,9 +23,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import co.techlax.quoteapp.ui.theme.models.Quote
 
 @Composable
-fun QuoteDetail() {
+fun QuoteDetail(quote: Quote) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize(1f)
@@ -55,13 +56,13 @@ fun QuoteDetail() {
                         .rotate(180f),
                 )
                 Text(
-                    text = "The only way to do great work is to love what you do",
+                    text = quote.text,
                     style = MaterialTheme.typography.headlineSmall,
                     fontFamily = FontFamily.SansSerif,
                 )
                 Spacer(modifier = Modifier.padding(16.dp))
                 Text(
-                    text = "Steve Jobs",
+                    text = quote.author,
                     style = MaterialTheme.typography.titleSmall,
                     fontFamily = FontFamily.Monospace,
                 )
