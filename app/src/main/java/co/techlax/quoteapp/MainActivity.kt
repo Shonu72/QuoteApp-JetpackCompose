@@ -10,17 +10,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import co.techlax.quoteapp.ui.theme.screens.QuoteDetail
 import co.techlax.quoteapp.ui.theme.screens.QuoteListScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // By using Coroutine this will run in background thread
         CoroutineScope(Dispatchers.IO).launch {
-            delay(10000)
+            // delay(10000) This is just for delaying the screen
             DataManager.loadAssetsFromFile(applicationContext)
         }
         setContent {
@@ -32,7 +33,12 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun App() {
     if (DataManager.isDataLoaded.value) {
-        QuoteListScreen(data = DataManager.data) {
+        if (DataManager.currentPage.value == Pages.LISTING) {
+            QuoteListScreen(data = DataManager.data) {
+                DataManager.switchPages(it)
+            }
+        } else {
+            DataManager.currentQuote?.let { QuoteDetail(quote = it) }
         }
     } else {
         Box(
@@ -45,4 +51,9 @@ fun App() {
             )
         }
     }
+}
+
+enum class Pages {
+    LISTING,
+    DETAILS,
 }

@@ -28,12 +28,13 @@ import androidx.compose.ui.unit.dp
 import co.techlax.quoteapp.ui.theme.models.Quote
 
 @Composable
-fun QuoteListItem(quote: Quote, onClick: () -> Unit) {
+fun QuoteListItem(quote: Quote, onClick: (quote: Quote) -> Unit) {
     Card(
         elevation = CardDefaults.cardElevation(4.dp),
         modifier = Modifier
-            .clickable { onClick() }
-            .padding(8.dp),
+            .clickable { onClick(quote) }
+            .padding(8.dp)
+            .background(Color(0xFF000066F)),
     ) {
         Row {
             Image(
@@ -44,14 +45,15 @@ fun QuoteListItem(quote: Quote, onClick: () -> Unit) {
                 modifier = Modifier
                     .size(40.dp)
                     .rotate(180f)
-                    .background(Color.Black),
+                    .background(Color(0xFF000000)),
             )
             Spacer(modifier = Modifier.padding(4.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = quote.text,
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.titleLarge, // Larger white text
                     modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 8.dp),
+                    color = Color.White,
                 )
                 Box(
                     modifier = Modifier.background(Color.LightGray)
@@ -60,9 +62,10 @@ fun QuoteListItem(quote: Quote, onClick: () -> Unit) {
                 )
                 Text(
                     text = quote.author,
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.titleMedium, // Larger text
                     fontWeight = FontWeight.Thin,
                     modifier = Modifier.padding(top = 4.dp),
+                    color = Color.Gray, // Gray author text
                 )
             }
         }
