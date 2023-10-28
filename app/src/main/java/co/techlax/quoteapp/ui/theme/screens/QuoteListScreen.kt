@@ -6,6 +6,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,17 +24,20 @@ fun QuoteListScreen(data: Array<Quote>, onClick: (quote: Quote) -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFFFFF)), // Use purple color
+            .background(
+                Color.Black.copy(0.8f),
+            ),
     ) {
         Column {
             Text(
                 text = "Quote App",
                 textAlign = TextAlign.Center,
-                modifier = Modifier.padding(8.dp, 24.dp)
+                modifier = Modifier
+                    .padding(8.dp, 13.dp)
                     .fillMaxWidth(1f),
                 style = MaterialTheme.typography.headlineMedium,
                 fontFamily = FontFamily.Monospace,
-                color = Color.Black,
+                color = Color.White, // White text color
             )
 
             QuoteList(data = data, onClick)

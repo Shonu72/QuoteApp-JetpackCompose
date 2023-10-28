@@ -33,39 +33,47 @@ fun QuoteListItem(quote: Quote, onClick: (quote: Quote) -> Unit) {
         elevation = CardDefaults.cardElevation(4.dp),
         modifier = Modifier
             .clickable { onClick(quote) }
-            .padding(8.dp)
-            .background(Color(0xFF000066F)),
+            .padding(12.dp),
     ) {
-        Row {
+        Row(
+            modifier = Modifier.background(
+                Color.DarkGray,
+            ),
+        ) {
             Image(
                 imageVector = Icons.Filled.FormatQuote,
                 colorFilter = ColorFilter.tint(Color.White),
                 alignment = Alignment.TopStart,
                 contentDescription = "Quote",
                 modifier = Modifier
-                    .size(40.dp)
-                    .rotate(180f)
-                    .background(Color(0xFF000000)),
+                    .size(20.dp)
+                    .rotate(180f),
             )
             Spacer(modifier = Modifier.padding(4.dp))
-            Column(modifier = Modifier.weight(1f)) {
+            Column(
+                modifier = Modifier.weight(1f).background(
+                    Color.DarkGray,
+                ),
+            ) {
                 Text(
                     text = quote.text,
-                    style = MaterialTheme.typography.titleLarge, // Larger white text
+                    style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 8.dp),
-                    color = Color.White,
+                    color = Color.White, // White text color
                 )
                 Box(
-                    modifier = Modifier.background(Color.LightGray)
+                    modifier = Modifier.background(
+                        Color.Gray.copy(.5f),
+                    )
                         .fillMaxWidth(.4f)
                         .height(1.dp),
                 )
                 Text(
                     text = quote.author,
-                    style = MaterialTheme.typography.titleMedium, // Larger text
+                    style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Thin,
-                    modifier = Modifier.padding(top = 4.dp),
-                    color = Color.Gray, // Gray author text
+                    modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
+                    color = Color.White, // White text color
                 )
             }
         }
